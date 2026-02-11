@@ -20,16 +20,18 @@ pipeline {
                 }
             }
         }
-
         stage('Push to ACR') {
             steps {
                 script {
-                    docker.withRegistry("https://${ACR_NAME}.azurecr.io", 'webappacr') {
+                    withEnv(["DOCKER_CONTEXT=default"]) {   // Add this line
+                        docker.withRegistry("https://${ACR_NAME}.azurecr.io", 'webappacr') {
                         docker.image("${IMAGE_NAME}").push()
                     }
                 }
-            }
         }
+    }
+}
+
 
         stage('Deploy to AKS') {
             steps {
