@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: python-webapp
-        image: webappacr.azurecr.io/python-webapp:latest
+        image: webappacr.azurecr.io/python-webapp:101
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
