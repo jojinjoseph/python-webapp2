@@ -24,7 +24,7 @@ pipeline {
         stage('Push to ACR') {
             steps {
                 script {
-                    docker.withRegistry("https://${ACR_NAME}.azurecr.io", 'acr-credentials') {
+                    docker.withRegistry("https://${ACR_NAME}.azurecr.io", 'webappacr') {
                         docker.image("${IMAGE_NAME}").push()
                     }
                 }
