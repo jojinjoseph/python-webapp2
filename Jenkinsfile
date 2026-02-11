@@ -38,6 +38,7 @@ pipeline {
                 withCredentials([file(credentialsId: 'aks-kubeconfig', variable: 'KUBECONFIG')]) {
                     bat 'kubectl apply -f deployment.yaml'
                     bat 'kubectl apply -f service.yaml'
+                    bat "kubectl rollout restart deployment/python-webapp"
                 }
             }
         }
